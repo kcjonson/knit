@@ -4,6 +4,9 @@ module.exports = {
         path: __dirname,
         filename: "./public/scripts/bundle.js"
     },
+    resolve: {
+      extensions: ['.js', '.jsx'],
+    },
     module: {
         loaders: [
             {
@@ -12,7 +15,37 @@ module.exports = {
             },
             {
                 test: /\.js$/,
-                loader: 'jsx-loader'
+                exclude: /(node_modules|bower_components)/,
+                use: {
+                  loader: 'babel-loader',
+                  options: {
+                    "presets": [
+                      ["env", {
+                        "targets": {
+                          "browsers": ["chrome >= 60"]
+                        }
+                      }]
+                    ]
+                  }
+
+                }
+            },
+            {
+                test: /\.jsx$/,
+                use: {
+                  loader: 'babel-loader',
+                  options: {
+                    "presets": [
+                      ["env", {
+                        "targets": {
+                          "browsers": ["chrome >= 60"]
+                        }
+                      }],
+                      "react"
+                    ]
+                  }
+
+                }
             }
         ]
     }
