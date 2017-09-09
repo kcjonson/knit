@@ -1,5 +1,7 @@
 .npm
 .DS_Store
 node_modules/
+/dist
+/public
 /app.js
 /app.js.map

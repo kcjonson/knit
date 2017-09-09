@@ -3,23 +3,31 @@ import sourcemaps from 'gulp-sourcemaps';
 import babel from 'gulp-babel';
 import changed from 'gulp-changed';
 
-const serverSrc = ["src/server/**/*.js"];
-const clientSrc = ["src/client/**/*.js"];
-const serverDest = "dist";
+const serverSrc = ['src/server/**/*.js'];
+const serverDest = 'dist';
 
-gulp.task('build', ['build-server'])
+const clientSrc = ['src/client/**/*.js'];
+const clientStatic = ['src/client/index.html']
+const clientDest = 'public';
+
+gulp.task('build', ['build-server', 'build-client'])
 
 gulp.task('build-server', () => {
   return gulp.src(serverSrc)
-  .pipe(changed(serverDest))
-  .pipe(sourcemaps.init())
-  .pipe(babel())
-  .pipe(sourcemaps.write("."))
-  .pipe(gulp.dest(serverDest));
+    .pipe(changed(serverDest))
+    .pipe(sourcemaps.init())
+    .pipe(babel())
+    .pipe(sourcemaps.write('.'))
+    .pipe(gulp.dest(serverDest));
 })
 
-gulp.task('build-client', () => {
+gulp.task('build-client', ['copy-client-static'], () => {
 
+})
+
+gulp.task('copy-client-static', () => {
+  return gulp.src(clientStatic)
+    .pipe(gulp.dest(clientDest));
 })
 
 gulp.task('watch', ['watch-server', 'watch-client'])
