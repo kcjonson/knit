@@ -42,6 +42,7 @@
   "dependencies": {
     "koa": "^2.3.0",
     "koa-router": "^7.2.1",
+    "koa-static": "^4.0.1",
     "lodash.template": "^4.4.0",
     "pretty-hrtime": "^1.0.3",
     "react": "^15.6.1",

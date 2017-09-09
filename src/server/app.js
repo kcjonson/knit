@@ -1,8 +1,8 @@
 const startTime = process.hrtime();
 console.log('Starting server ...')
 
-
 import Koa from 'koa';
+import serve from 'koa-static';
 import prettyHrtime from 'pretty-hrtime';
 import router from './Router';
 
@@ -26,9 +26,13 @@ app.use(async (ctx, next) => {
   console.log(`${ctx.method} ${ctx.url} - ${ms}`);
 });
 
+
 // Attach router
-app.use(router.routes())
-  .use(router.allowedMethods());
+app.use(router.routes());
+app.use(router.allowedMethods());
+
+// Serve static
+app.use(serve('public'))
 
 app.listen(3000);
 

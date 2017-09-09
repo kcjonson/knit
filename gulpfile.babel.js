@@ -18,6 +18,9 @@ const clientDest = 'public';
 
 gulp.task('build', ['build-server', 'build-browser-client'])
 
+
+// Server Code
+
 // Build the assets to run the server
 gulp.task('build-server', ['build-server-client'], () => {
   return gulp.src(serverSrc)
@@ -44,25 +47,31 @@ gulp.task('build-server-client-static', () => {
     .pipe(gulp.dest(serverClientDest));
 })
 
+
+// Browser Code
+
 gulp.task('build-browser-client', ['build-browser-client-static'], () => {
   return gulp.src(clientEntry)
+    .pipe(changed(clientDest))
     .pipe(webpack(require('./webpack.config.js')))
     .pipe(gulp.dest(clientDest));
 })
 
 gulp.task('build-browser-client-static', () => {
   return gulp.src(clientStatic)
+    .pipe(changed(clientDest))
+    .pipe(template({initialData: ""})) // Static page will have no initial data
     .pipe(gulp.dest(clientDest));
 })
 
 // Watch
 
-gulp.task('watch', ['watch-server', 'watch-client'])
+gulp.task('watch', ['watch-server', 'watch-browser'])
 
 gulp.task('watch-server', () => {
    return gulp.watch([serverSrc, clientSrc, clientStatic], ['build-server'])
 })
 
-gulp.task('watch-client', () => {
-  // TODO
+gulp.task('watch-browser', () => {
+  return gulp.watch([clientSrc, clientStatic], ['build-browser-client'])
 })
