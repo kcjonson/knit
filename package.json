@@ -2,13 +2,13 @@
   "name": "knit",
   "version": "1.0.0",
   "description": "",
-  "main": "app.js",
+  "main": "dist/app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\"",
     "build": "gulp build",
     "watch": "gulp watch",
-    "start": "node app.js",
-    "dev": "npm run build && concurrently \"nodemon\" \"npm run watch\""
+    "start": "node dist/app.js",
+    "dev": "npm run build && concurrently --kill-others \"nodemon\" \"npm run watch\""
   },
   "repository": {
     "type": "git",
@@ -26,6 +26,7 @@
     "concurrently": "^3.5.0",
     "gulp": "^3.9.1",
     "gulp-babel": "^7.0.0",
+    "gulp-changed": "^3.1.0",
     "gulp-concat": "^2.6.1",
     "gulp-sourcemaps": "^2.6.1",
     "nodemon": "^1.12.0"

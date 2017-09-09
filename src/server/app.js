@@ -5,7 +5,10 @@ console.log('Starting server ...')
 import http from 'http';
 import prettyHrtime from 'pretty-hrtime';
 
-import requestHandler from 'core/request-handler';
+import requestHandler from './core/request-handler.js';
+
+
+
 
 
 var server = http.createServer(requestHandler);

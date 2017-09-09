@@ -1,32 +1,33 @@
 import gulp from 'gulp';
 import sourcemaps from 'gulp-sourcemaps';
 import babel from 'gulp-babel';
-import concat from 'gulp-concat';
+import changed from 'gulp-changed';
 
-const serverFiles = ["src/server/**/*.js", "src/common/**/*.js"];
-const clientFiles = ["src/client/**/*.js", "src/common/**/*.js"];
+const serverSrc = ["src/server/**/*.js"];
+const clientSrc = ["src/client/**/*.js"];
+const serverDest = "dist";
 
 gulp.task('build', ['build-server'])
 
 gulp.task('build-server', () => {
-   return gulp.src()
-    .pipe(sourcemaps.init())
-    .pipe(babel())
-    .pipe(concat("app.js"))
-    .pipe(sourcemaps.write("."))
-    .pipe(gulp.dest("."));
+  return gulp.src(serverSrc)
+  .pipe(changed(serverDest))
+  .pipe(sourcemaps.init())
+  .pipe(babel())
+  .pipe(sourcemaps.write("."))
+  .pipe(gulp.dest(serverDest));
 })
 
 gulp.task('build-client', () => {
 
 })
 
-gulp.task('watch', ['build-server', 'build-client'])
+gulp.task('watch', ['watch-server', 'watch-client'])
 
 gulp.task('watch-server', () => {
-   return gulp.watch(serverFiles, ['build-server'])
+   return gulp.watch(serverSrc, ['build-server'])
 })
 
 gulp.task('watch-client', () => {
-  return gulp.watch(clientFiles, ['build-client'])
+  return gulp.watch(clientSrc, ['build-client'])
 })
