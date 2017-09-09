@@ -2,7 +2,7 @@ module.exports = {
     entry: "./src/client/app.js",
     output: {
         path: __dirname,
-        filename: "./public/scripts/bundle.js"
+        filename: "./scripts/bundle.js"
     },
     resolve: {
       extensions: ['.js', '.jsx'],

@@ -1,4 +1,3 @@
 {
-  "ignore": ["src/**/*", "*.map"],
-  "verbose": true
+  "ignore": ["src/**/*", "*.map"]
 }

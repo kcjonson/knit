@@ -3,43 +3,66 @@ import sourcemaps from 'gulp-sourcemaps';
 import babel from 'gulp-babel';
 import changed from 'gulp-changed';
 import webpack from 'webpack-stream';
+import template from 'gulp-template';
+
+const dest = 'dist/';
 
 const serverSrc = ['src/server/**/*.js'];
-const serverDest = 'dist';
+const serverDest = `${dest}/server`;
+const serverClientDest = `${dest}/client`;
 
-
+const clientSrc = ['src/client/**/*.{js,jsx}']
 const clientEntry = 'src/client/app.js';
 const clientStatic = ['src/client/index.html']
 const clientDest = 'public';
 
-gulp.task('build', ['build-server', 'build-client'])
+gulp.task('build', ['build-server', 'build-browser-client'])
 
-gulp.task('build-server', () => {
+// Build the assets to run the server
+gulp.task('build-server', ['build-server-client'], () => {
   return gulp.src(serverSrc)
     .pipe(changed(serverDest))
     .pipe(sourcemaps.init())
-    .pipe(babel())
+    .pipe(babel())  // TODO: Turn off JSX for this babel run.
     .pipe(sourcemaps.write('.'))
     .pipe(gulp.dest(serverDest));
 })
 
-gulp.task('build-client', ['copy-client-static'], () => {
+// Build the assets to run the client application o n the server
+gulp.task('build-server-client', ['build-server-client-static'], () => {
+  return gulp.src(clientSrc)
+    .pipe(changed(serverClientDest))
+    .pipe(sourcemaps.init())
+    .pipe(babel())
+    .pipe(sourcemaps.write('.'))
+    .pipe(gulp.dest(serverClientDest));
+})
+
+gulp.task('build-server-client-static', () => {
+  return gulp.src(clientStatic)
+    .pipe(changed(serverClientDest))
+    .pipe(gulp.dest(serverClientDest));
+})
+
+gulp.task('build-browser-client', ['build-browser-client-static'], () => {
   return gulp.src(clientEntry)
     .pipe(webpack(require('./webpack.config.js')))
     .pipe(gulp.dest(clientDest));
 })
 
-gulp.task('copy-client-static', () => {
+gulp.task('build-browser-client-static', () => {
   return gulp.src(clientStatic)
     .pipe(gulp.dest(clientDest));
 })
 
+// Watch
+
 gulp.task('watch', ['watch-server', 'watch-client'])
 
 gulp.task('watch-server', () => {
-   return gulp.watch(serverSrc, ['build-server'])
+   return gulp.watch([serverSrc, clientSrc, clientStatic], ['build-server'])
 })
 
 gulp.task('watch-client', () => {
-  return gulp.watch(clientSrc, ['build-client'])
+  // TODO
 })

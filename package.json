@@ -2,13 +2,15 @@
   "name": "knit",
   "version": "1.0.0",
   "description": "",
-  "main": "dist/app.js",
+  "main": "dist/server/app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\"",
     "build": "gulp build",
     "watch": "gulp watch",
     "start": "node dist/app.js",
-    "dev": "npm run build && concurrently --kill-others \"nodemon\" \"npm run watch\""
+    "dev": "npm run build && concurrently --kill-others \"nodemon\" \"npm run watch\"",
+    "clean": "git clean -Xdf -e '!node_modules'",
+    "nuke": "git clean -Xdf"
   },
   "repository": {
     "type": "git",
@@ -31,6 +33,7 @@
     "gulp-changed": "^3.1.0",
     "gulp-concat": "^2.6.1",
     "gulp-sourcemaps": "^2.6.1",
+    "gulp-template": "^4.0.0",
     "jsx-loader": "^0.13.2",
     "nodemon": "^1.12.0",
     "webpack": "^3.5.6",
@@ -39,6 +42,7 @@
   "dependencies": {
     "koa": "^2.3.0",
     "koa-router": "^7.2.1",
+    "lodash.template": "^4.4.0",
     "pretty-hrtime": "^1.0.3",
     "react": "^15.6.1",
     "react-dom": "^15.6.1"
