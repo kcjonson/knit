@@ -2,18 +2,13 @@ const startTime = process.hrtime();
 console.log('Starting server ...')
 
 
-
 import http from 'http';
 import prettyHrtime from 'pretty-hrtime';
 
+import requestHandler from 'core/request-handler';
 
 
-var server = http.createServer(function(req, res) {
-    res.writeHead(200, { 'Content-Type': 'text/plain' });
-    res.end("hello world!\n");
-});
-
-
+var server = http.createServer(requestHandler);
 server.listen(3000);
 
 const endTime = process.hrtime(startTime)
