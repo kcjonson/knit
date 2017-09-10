@@ -7,7 +7,6 @@ import template from 'lodash.template';
 // Load base of client application
 import ClientIndex from '../../../client/Index';
 
-
 const data = {
   foo: 'bar'
 }
@@ -23,7 +22,6 @@ const pageString = template(pageTemplate)({
   pageContents: pageContents,
   initialData: dataTag
 })
-
 
 const router = new Router();
 

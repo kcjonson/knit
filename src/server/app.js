@@ -2,14 +2,16 @@ const startTime = process.hrtime();
 console.log('Starting server ...')
 
 import Koa from 'koa';
+import bodyParser from 'koa-bodyparser';
 import serve from 'koa-static';
 import prettyHrtime from 'pretty-hrtime';
 import router from './Router';
 
 // Koa app creation;
 const app = new Koa();
+app.use(bodyParser());
 
-// x-response-time
+//x-response-time
 app.use(async (ctx, next) => {
   const start = Date.now();
   await next();
@@ -18,7 +20,7 @@ app.use(async (ctx, next) => {
 });
 
 
-// logger
+//logger
 app.use(async (ctx, next) => {
   const start = Date.now();
   await next();
@@ -31,7 +33,7 @@ app.use(async (ctx, next) => {
 app.use(router.routes());
 app.use(router.allowedMethods());
 
-// Serve static
+//Serve static
 app.use(serve('public'))
 
 app.listen(3000);
