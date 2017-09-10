@@ -8,7 +8,8 @@ import template from 'lodash.template';
 import ClientIndex from '../../../client/Index';
 
 const data = {
-  foo: 'bar'
+  foo: 'foo',
+  id: 1234
 }
 
 const dataString = JSON.stringify(data);

@@ -25,7 +25,8 @@ module.exports = {
                           "browsers": ["chrome >= 60"]
                         }
                       }]
-                    ]
+                    ],
+                    "plugins": ["transform-class-properties"]
                   }
 
                 }
@@ -42,7 +43,8 @@ module.exports = {
                         }
                       }],
                       "react"
-                    ]
+                    ],
+                    "plugins": ["transform-class-properties"]
                   }
 
                 }
