@@ -13,13 +13,13 @@ const pool = mysql.createPool({
 
 
 
-router.get('/', async (ctx, next) => {
+router.get('/', async(ctx, next) => {
 
   const connection = await pool.getConnection();
   const [rows] = await connection.query('SELECT * FROM devices')
   connection.release();
-
-  ctx.body = JSON.stringify(rows);
+  ctx.response.type = "application/json";
+  ctx.body = JSON.stringify({devices: rows});
 });
 
 router.get('/:id', (ctx, next) => {

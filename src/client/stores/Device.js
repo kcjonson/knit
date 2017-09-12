@@ -2,8 +2,8 @@ import Store from '../core/Store';
 
 export default class Device extends Store {
 
-  state = {
-    bar: 'bar'
-  }
+  url = 'localhost:3000/api/device';
+  key = 'id';
+
 
 }

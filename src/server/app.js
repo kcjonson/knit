@@ -1,6 +1,6 @@
 const startTime = process.hrtime();
 console.log('Starting server ...')
-
+require('isomorphic-fetch');
 import Koa from 'koa';
 import bodyParser from 'koa-bodyparser';
 import serve from 'koa-static';
