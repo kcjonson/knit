@@ -49,8 +49,6 @@
     "lodash.template": "^4.4.0",
     "mysql2": "^1.4.2",
     "pretty-hrtime": "^1.0.3",
-    "prop-types": "^15.5.10",
-    "react": "^16.0.0-rc.2",
-    "react-dom": "^16.0.0-rc.2"
+    "prop-types": "^15.5.10"
   }
 }
