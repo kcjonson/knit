@@ -1,4 +1,4 @@
-import React from 'react';
+import Inferno from 'inferno';
 import PropTypes from 'prop-types';
 import bind from './util/bind';
 import Device from './stores/Device';
@@ -26,7 +26,7 @@ const Index = bind(({foo, bar}) => {
 */
 
 const Devices = bind(({devices = []}) => {
-  console.log('Devices.render()', devices);
+  //console.log('Devices.render()', devices);
   const deviceComponents = devices.map((device) => {
     return <div className='device' key={device.id}>{device.name}</div>
   })
@@ -37,12 +37,12 @@ const Devices = bind(({devices = []}) => {
 
 
 const Index = () => {
-  console.log('Index.render()');
-  return (<div className='Index'><Devices id='1234'/></div>)
+  //console.log('Index.render()');
+  return <div className='Index'>Hello</div>
 }
 
-Index.propTypes = {
-  devices: PropTypes.array
-}
+// Index.propTypes = {
+//   devices: PropTypes.array
+// }
 
 export default Index;

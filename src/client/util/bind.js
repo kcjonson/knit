@@ -1,4 +1,5 @@
-import React, {Component} from 'react';
+import Inferno from 'inferno';
+import Component from 'inferno-component';
 
 class BoundComponent extends Component {
 
@@ -25,7 +26,7 @@ class BoundComponent extends Component {
   }
 
   render() {
-    console.log('bind/BoundComponent.render()', this.state, this.props)
+    //console.log('bind/BoundComponent.render()', this.state, this.props)
     const componentState = Object.assign({}, this.state, this.props.args);
     const componentInstance = this.props.componentToBind(componentState);
     return componentInstance;
@@ -54,13 +55,14 @@ const bind = (componentToBind, store) => {
       // This is an async call, but we can't await and block the render chain.
       // the store will update the state later via an event
       storeInstance.provision();
-      provisioned = true;  // Doesn't guarentee that  
+      provisioned = true;  // Doesn't guarentee that
     }
 
     // warning: store instance may have its state unresolved
     return <BoundComponent componentToBind={componentToBind}
       store={storeInstance}
       args={args} />
+
   }
 
   return boundComponent;

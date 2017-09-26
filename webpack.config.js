@@ -42,9 +42,8 @@ module.exports = {
                           "browsers": ["chrome >= 60"]
                         }
                       }],
-                      "react"
                     ],
-                    "plugins": ["transform-class-properties"]
+                    "plugins": ["transform-class-properties", "inferno"]
                   }
 
                 }

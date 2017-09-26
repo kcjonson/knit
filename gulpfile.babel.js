@@ -26,7 +26,7 @@ gulp.task('build-server', ['build-server-client'], () => {
   return gulp.src(serverSrc)
     .pipe(changed(serverDest))
     .pipe(sourcemaps.init())
-    .pipe(babel())  // TODO: Turn off JSX for this babel run.
+    .pipe(babel()) 
     .pipe(sourcemaps.write('.'))
     .pipe(gulp.dest(serverDest));
 })
