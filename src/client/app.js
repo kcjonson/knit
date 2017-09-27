@@ -1,4 +1,5 @@
-import React from 'react';
+import Inferno from 'inferno';
+import createElement from 'inferno-create-element';
 import ReactDOM from 'react-dom';
 
 import Index from './Index';
@@ -12,7 +13,7 @@ if (initialStateNode) {
   initialStateNode.parentNode.removeChild(initialStateNode);
 }
 
-ReactDOM.render(
-  React.createElement(Index, initialState),
+Inferno.render(
+  createElement(Index, initialState),
   document.getElementById('knit-app')
 );

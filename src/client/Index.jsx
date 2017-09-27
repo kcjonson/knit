@@ -26,7 +26,7 @@ const Index = bind(({foo, bar}) => {
 */
 
 const Devices = bind(({devices = []}) => {
-  //console.log('Devices.render()', devices);
+  console.log('Devices.render()', devices);
   const deviceComponents = devices.map((device) => {
     return <div className='device' key={device.id}>{device.name}</div>
   })
@@ -36,9 +36,11 @@ const Devices = bind(({devices = []}) => {
 
 
 
-const Index = () => {
-  //console.log('Index.render()');
-  return <div className='Index'>Hello</div>
+const Index = (props = {}) => {
+  console.log('Index.render()', props);
+  return <div className='Index'>
+    <Devices id={props.id} />
+  </div>
 }
 
 // Index.propTypes = {

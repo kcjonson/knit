@@ -4,6 +4,7 @@ import Component from 'inferno-component';
 class BoundComponent extends Component {
 
   constructor() {
+    console.log('bind/BoundComponent.constructor()')
     super();
     this.state = {} // State is gross, please forgive me. But I think this is
                     // preferable to using force update. -KCJ
