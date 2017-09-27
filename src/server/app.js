@@ -22,6 +22,7 @@ app.use(async (ctx, next) => {
 
 //logger
 app.use(async (ctx, next) => {
+  console.log(`${ctx.method} ${ctx.url} - recieved`);
   const start = Date.now();
   await next();
   const ms = Date.now() - start;

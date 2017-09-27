@@ -19,12 +19,12 @@ router.get('/', async(ctx, next) => {
   const [rows] = await connection.query('SELECT * FROM devices')
   connection.release();
   ctx.response.type = "application/json";
-  ctx.body = JSON.stringify({devices: rows});
+  ctx.body = JSON.stringify(rows);
 });
 
 router.get('/:id', (ctx, next) => {
   const id = ctx.originalUrl.split('/')[ctx.originalUrl.split('/').length - 1]
-  ctx.body = '/api/devices/:id not implemented yet'
+  ctx.body = JSON.stringify({error: '/api/devices/:id not implemented yet'});
 });
 
 

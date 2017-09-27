@@ -22,15 +22,14 @@ class BoundComponent extends Component {
   }
 
   onStoreChange(newState) {
-    //console.log('bind/BoundComponent.onStoreChange()', newState)
+    console.log('bind/BoundComponent.onStoreChange()', newState)
     this.setState(newState);
   }
 
   render() {
-    //console.log('bind/BoundComponent.render()', this.state, this.props)
-    const componentState = Object.assign({}, this.state, this.props.args);
-    const componentInstance = this.props.componentToBind(componentState);
-    return componentInstance;
+    //console.log('bind/BoundComponent.render()', this.state, this.props.args);
+    const componentProps = Object.assign({}, this.state, this.props.args);
+    return this.props.componentToBind(componentProps);
   }
 
 }
@@ -56,6 +55,7 @@ const bind = (componentToBind, store) => {
       // This is an async call, but we can't await and block the render chain.
       // the store will update the state later via an event
       storeInstance.provision();
+
       provisioned = true;  // Doesn't guarentee that
     }
 

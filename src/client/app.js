@@ -1,7 +1,5 @@
 import Inferno from 'inferno';
 import createElement from 'inferno-create-element';
-import ReactDOM from 'react-dom';
-
 import Index from './Index';
 
 // Snag the initial state that was passed from the server side

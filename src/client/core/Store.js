@@ -19,9 +19,16 @@ export default class Store extends EventEmitter {
     this.__state = {};
   }
 
+  url = null; // The base url to call
+
   key = 'id'; // default key is "id", can be overidden this is not the key itself
               // but the property on the state that holds the key value.
               // confusing, maybe I should rename it. -KCJ
+
+  collection = false; // Is this a collection of objects? Collections won't send
+                      // a key to the server since they're fetching a list.
+                      // set to the name of a store such as "device"
+
 
 
   // set the state of the store
@@ -40,15 +47,21 @@ export default class Store extends EventEmitter {
   }
 
   // pull state from the manager
-  // Is this even a valid case to use generators? Fuck, I don't know, if someone
-  // reads this let me know if I'm just being silly, I have no idea ... -KCJ
-  provision() {
-    const key = this.state[this.key];
+  async provision() {
+    const keyValue = this.state[this.key];
     const name = this.constructor.name;
-    console.log('Store.provision()', name, key);
-    this.state = manager.get(name, key).then((state) => {
-      this.state = state;
-    })
+    console.log('Store.provision()', name, keyValue);
+    await manager.get(name, {
+      key: keyValue,
+      collection: this.collection,
+      url: this.url
+    }).then((state) => {
+      if (this.collection === false) {
+        this.state = state;
+      } else {
+        this.state = {[this.constructor.name]: state}
+      }
+    });
   }
 
 }

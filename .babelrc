@@ -6,5 +6,9 @@
       }
     }]
   ],
-  "plugins": ["transform-class-properties", "inferno"]
+  "plugins": [
+    "transform-class-properties",
+    "transform-object-rest-spread",
+    "inferno"
+  ]
 }
