@@ -13,6 +13,10 @@ Get DB ready for knit
 2) create the `knitautomation` db with `CREATE DATABASE knitautomation;` then `exit`;
 3) apply the schema with `mysql -u root knitautomation < schema.sql` when in this direcory
 
+Install yarn
+0) see if its 1.1.0 or above
+1) `brew install yarn --without-node`
+
 Set the node version
 1) make sure n is installed, if not, install it
 2) check the node version, make sure its latest (8.4.0 or more recent)

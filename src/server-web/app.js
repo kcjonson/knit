@@ -1,6 +1,6 @@
 const startTime = process.hrtime();
-console.log('Starting server ...')
-require('isomorphic-fetch');
+console.log('Starting server-web ...')
+require('isomorphic-fetch');  // eslint-disable-line
 import Koa from 'koa';
 import bodyParser from 'koa-bodyparser';
 import serve from 'koa-static';
@@ -41,4 +41,4 @@ app.listen(4000);
 
 
 const endTime = process.hrtime(startTime)
-console.log('Server started in', prettyHrtime(endTime))
+console.log('server-web started in', prettyHrtime(endTime))

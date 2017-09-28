@@ -12,14 +12,14 @@ const pool = mysql.createPool({
 });
 
 router.post('/', async(ctx, next) => {
-  
+
 })
 
 router.get('/', async(ctx, next) => {
   const connection = await pool.getConnection();
   const [rows] = await connection.query('SELECT * FROM devices')
   connection.release();
-  ctx.response.type = "application/json";
+  ctx.response.type = 'application/json';
   ctx.body = JSON.stringify(rows);
 });
 

@@ -60,16 +60,18 @@ export async function get(storeName, props = {}) {
       __cache[sessionId][storeName][props.key]) {
     console.log('storeManager fetch', __cache[sessionId][storeName][props.key])
     return __cache[sessionId][storeName][props.key];
-  } else {
-
   }
+
+
 
 
 
   let url = 'http://' + props.url;
   if (props.collection === false) {
-    if (!props.key) throw new Error('No key value found!')
-    url += `/${props.key}`;
+    if (!props.key) {
+throw new Error('No key value found!')
+}
+    url = url + `/${props.key}`;
   }
   let res = await fetch(url);
   data = await res.json();
@@ -85,7 +87,9 @@ export async function get(storeName, props = {}) {
     //   this.__cache[store] = state;
     // }
   } else {
-    if (!data.forEach) throw new Error('Data from colleciton endpoint not iteratable');
+    if (!data.forEach) {
+throw new Error('Data from colleciton endpoint not iteratable');
+}
     // Take data from the collection response and add it to the cache as if
     // it were loaded by a non collection store itself.
     data.forEach(item => {
@@ -116,5 +120,5 @@ export async function set() {
 export default {
   get: get,
   set: set,
-  startSession: startSession,
+  startSession: startSession
 }

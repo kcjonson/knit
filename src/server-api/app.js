@@ -1,9 +1,7 @@
 const startTime = process.hrtime();
-console.log('Starting server ...')
-require('isomorphic-fetch');
+console.log('Starting server-api ...')
 import Koa from 'koa';
 import bodyParser from 'koa-bodyparser';
-import serve from 'koa-static';
 import prettyHrtime from 'pretty-hrtime';
 import router from './Router';
 
@@ -39,4 +37,4 @@ app.listen(3000);
 
 
 const endTime = process.hrtime(startTime)
-console.log('Server started in', prettyHrtime(endTime))
+console.log('server-api started in', prettyHrtime(endTime))

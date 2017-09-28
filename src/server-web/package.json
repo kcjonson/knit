@@ -1,0 +1,60 @@
+{
+  "name": "@knit/server-web",
+  "version": "1.0.0",
+  "description": "",
+  "main": "dist/server/app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\"",
+    "build": "gulp build",
+    "watch": "gulp watch",
+    "start": "node dist/app.js",
+    "dev": "npm run build && concurrently --kill-others \"nodemon\" \"npm run watch\"",
+    "clean": "git clean -Xdf -e '!node_modules'",
+    "nuke": "git clean -Xdf"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kcjonson/knit.git"
+  },
+  "author": "Kevin Jonson <kcjonson@gmail.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kcjonson/knit/issues"
+  },
+  "homepage": "https://github.com/kcjonson/knit#readme",
+  "devDependencies": {
+    "babel-core": "^6.26.0",
+    "babel-loader": "^7.1.2",
+    "babel-plugin-inferno": "^3.2.0",
+    "babel-plugin-transform-class-properties": "^6.24.1",
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
+    "babel-preset-env": "^1.6.0",
+    "babel-preset-react": "^6.24.1",
+    "concurrently": "^3.5.0",
+    "gulp": "^3.9.1",
+    "gulp-babel": "^7.0.0",
+    "gulp-changed": "^3.1.0",
+    "gulp-concat": "^2.6.1",
+    "gulp-sourcemaps": "^2.6.1",
+    "gulp-template": "^4.0.0",
+    "jsx-loader": "^0.13.2",
+    "nodemon": "^1.12.0",
+    "webpack": "^3.5.6",
+    "webpack-stream": "^4.0.0"
+  },
+  "dependencies": {
+    "@knit/client": "*",
+    "inferno": "^3.9.0",
+    "inferno-create-element": "^3.9.0",
+    "inferno-server": "^3.9.0",
+    "isomorphic-fetch": "^2.2.1",
+    "koa": "^2.3.0",
+    "koa-bodyparser": "^4.2.0",
+    "koa-router": "^7.2.1",
+    "koa-static": "^4.0.1",
+    "lodash.template": "^4.4.0",
+    "mysql2": "^1.4.2",
+    "pretty-hrtime": "^1.0.3",
+    "prop-types": "^15.5.10"
+  }
+}

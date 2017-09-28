@@ -1,17 +1,19 @@
-module.exports = {
-    entry: "./src/client/app.js",
+import webpack from 'webpack';
+
+export default {
+    entry: './app.js',
     output: {
         path: __dirname,
-        filename: "./scripts/bundle.js"
+        filename: './scripts/bundle.js'
     },
     resolve: {
-      extensions: ['.js', '.jsx'],
+      extensions: ['.js', '.jsx']
     },
     module: {
         loaders: [
             {
                 test: /\.css$/,
-                loader: "style-loader!css-loader"
+                loader: 'style-loader!css-loader'
             },
             {
                 test: /\.js$/,
@@ -19,14 +21,14 @@ module.exports = {
                 use: {
                   loader: 'babel-loader',
                   options: {
-                    "presets": [
-                      ["env", {
-                        "targets": {
-                          "browsers": ["chrome >= 60"]
+                    presets: [
+                      ['env', {
+                        targets: {
+                          browsers: ['chrome >= 60']
                         }
                       }]
                     ],
-                    "plugins": ["transform-class-properties"]
+                    plugins: ['transform-class-properties']
                   }
 
                 }
@@ -36,14 +38,14 @@ module.exports = {
                 use: {
                   loader: 'babel-loader',
                   options: {
-                    "presets": [
-                      ["env", {
-                        "targets": {
-                          "browsers": ["chrome >= 60"]
+                    presets: [
+                      ['env', {
+                        targets: {
+                          browsers: ['chrome >= 60']
                         }
-                      }],
+                      }]
                     ],
-                    "plugins": ["transform-class-properties", "inferno"]
+                    plugins: ['transform-class-properties', 'inferno']
                   }
 
                 }

@@ -8,7 +8,7 @@ import StoreManager from '../../../client/core/storeManager';
 
 // Load base of client application
 import ClientIndex from '../../../client/Index';
-const pageTemplate = fs.readFileSync('./dist/client/index.html', "utf8");
+const pageTemplate = fs.readFileSync('./dist/client/index.html', 'utf8');
 
 
 function applyTemplate(data) {
