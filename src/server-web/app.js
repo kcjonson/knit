@@ -37,7 +37,7 @@ app.use(router.allowedMethods());
 //Serve static
 app.use(serve('public'))
 
-app.listen(3000);
+app.listen(4000);
 
 
 const endTime = process.hrtime(startTime)

@@ -11,10 +11,11 @@ const pool = mysql.createPool({
   database: 'knitautomation'
 });
 
-
+router.post('/', async(ctx, next) => {
+  
+})
 
 router.get('/', async(ctx, next) => {
-
   const connection = await pool.getConnection();
   const [rows] = await connection.query('SELECT * FROM devices')
   connection.release();

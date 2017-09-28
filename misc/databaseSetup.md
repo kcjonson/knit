@@ -10,5 +10,16 @@ Get up and running
 
 Get DB ready for knit
 1) log in
-2) create the `knitautomation` db with `CREATE DATABASE knitautomation`
+2) create the `knitautomation` db with `CREATE DATABASE knitautomation;` then `exit`;
 3) apply the schema with `mysql -u root knitautomation < schema.sql` when in this direcory
+
+Set the node version
+1) make sure n is installed, if not, install it
+2) check the node version, make sure its latest (8.4.0 or more recent)
+3) `n 8.4.0`;
+
+Install dependencies
+1) `npm install`
+
+Start the server
+1) `npm run dev`
