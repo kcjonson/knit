@@ -1,0 +1,9 @@
+*
+!src/*
+!/.babelrc
+!/.eslintignore
+!/.eslintrc
+!/.gitignore
+!/.gulpfile.babel.js
+!/package.json
+!/.webpack.config.babel.js

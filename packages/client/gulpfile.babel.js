@@ -7,12 +7,11 @@ import template from 'gulp-template';
 
 
 
-const src = ['./{core,routes,stores,util}/**/*.{js,jsx}', './Index.jsx', './app.js'];
-const entry = './app.js';
-const staticFiles = ['./index.html'];
-const dest = './dist';
-const destBundle = `${dest}/static`;
-const destServer = `${dest}/server`;
+const src = ['src/{core,routes,stores,util}/**/*.{js,jsx}', 'src/Index.jsx', 'src/app.js'];
+const entry = 'src/app.js';
+const staticFiles = ['src/index.html'];
+const destBundle = `./public`;
+const destServer = `./`;
 
 gulp.task('build', ['build-bundle', 'build-unbundled'])
 
