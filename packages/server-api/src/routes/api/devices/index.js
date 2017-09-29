@@ -3,7 +3,6 @@ import mysql from 'mysql2/promise'
 const router = new Router();
 
 
-// TODO: Look at node_env or somewhere else for this, will make things easy
 // TODO: await for connection to be made
 const pool = mysql.createPool({
   host: 'localhost',

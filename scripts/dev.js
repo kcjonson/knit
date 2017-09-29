@@ -8,7 +8,7 @@ if (nodeVersion !== process.version) {
 }
 
 
-var execSync = require('child_process').execSync;
+//var execSync = require('child_process').execSync;
 
 
 
