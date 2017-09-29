@@ -4,6 +4,6 @@
 !/.eslintignore
 !/.eslintrc
 !/.gitignore
-!/.gulpfile.babel.js
+!/gulpfile.babel.js
 !/package.json
-!/.webpack.config.babel.js
+!/webpack.config.babel.js

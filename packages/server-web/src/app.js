@@ -6,6 +6,7 @@ import bodyParser from 'koa-bodyparser';
 import serve from 'koa-static';
 import prettyHrtime from 'pretty-hrtime';
 import router from './Router';
+import resolve from 'resolve';
 
 // Koa app creation;
 const app = new Koa();
@@ -34,8 +35,13 @@ app.use(async (ctx, next) => {
 app.use(router.routes());
 app.use(router.allowedMethods());
 
-//Serve static
-app.use(serve('public'))
+// Serve static
+// This is a huge hack for now. Gotta figgure this better later.
+// The goal is to not have to copy files from the client package, since thats
+// more build complecity, but instead, use them in place.
+let clientPublicDir = resolve.sync('@knit/client/public/index.html');
+clientPublicDir = clientPublicDir.replace('/index.html', '');
+app.use(serve(clientPublicDir))
 
 app.listen(4000);
 

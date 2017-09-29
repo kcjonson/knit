@@ -5,13 +5,13 @@ import createElement from 'inferno-create-element';
 import fs from 'fs';
 import template from 'lodash.template';
 import StoreManager from '@knit/client/core/storeManager';
+import resolve from 'resolve';
 
 // Load base of client application
 import ClientIndex from '@knit/client/Index';
 
-
-const pageTemplate = fs.readFileSync('@knit/client/index.html', 'utf8');
-
+const pageTemplatePath = resolve.sync('@knit/client/index.html')
+const pageTemplate = fs.readFileSync(pageTemplatePath, 'utf8');
 
 function applyTemplate(data) {
   const dataString = JSON.stringify(data);

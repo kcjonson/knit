@@ -5,8 +5,8 @@ import changed from 'gulp-changed';
 import template from 'gulp-template';
 
 
-const serverSrc = ['./routes/**/*.js', './Router.js', './app.js'];
-const serverDest = `./dist/server-web`;
+const serverSrc = ['src/**/*'];
+const serverDest = `dist`;
 
 
 
@@ -24,7 +24,7 @@ gulp.task('build-server', () => {
     .pipe(babel())
     .pipe(sourcemaps.write('.'))
     .pipe(gulp.dest(serverDest));
-})
+});
 
 
 

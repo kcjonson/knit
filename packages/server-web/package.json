@@ -31,6 +31,9 @@
     "babel-plugin-transform-object-rest-spread": "^6.26.0",
     "babel-preset-env": "^1.6.0",
     "babel-preset-react": "^6.24.1",
+    "eslint": "^4.7.2",
+    "eslint-plugin-import": "^2.7.0",
+    "eslint-plugin-react": "^7.4.0",
     "gulp": "^3.9.1",
     "gulp-babel": "^7.0.0",
     "gulp-changed": "^3.1.0",
@@ -38,10 +41,7 @@
     "gulp-sourcemaps": "^2.6.1",
     "gulp-template": "^4.0.0",
     "jsx-loader": "^0.13.2",
-    "nodemon": "^1.12.0",
-    "eslint": "^4.7.2",
-    "eslint-plugin-import": "^2.7.0",
-    "eslint-plugin-react": "^7.4.0"
+    "nodemon": "^1.12.0"
   },
   "dependencies": {
     "@knit/client": "*",
@@ -56,6 +56,7 @@
     "lodash.template": "^4.4.0",
     "mysql2": "^1.4.2",
     "pretty-hrtime": "^1.0.3",
-    "prop-types": "^15.5.10"
+    "prop-types": "^15.5.10",
+    "resolve": "^1.4.0"
   }
 }
