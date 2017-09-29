@@ -1,6 +1,4 @@
-import webpack from 'webpack';
-
-export default {
+module.exports = {
     entry: './app.js',
     output: {
         path: __dirname,

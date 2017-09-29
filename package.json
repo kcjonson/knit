@@ -7,14 +7,10 @@
   "private": true,
   "scripts": {
     "clean": "git clean -Xdf -e '!node_modules'",
-    "nuke": "git clean -Xdf"
+    "nuke": "git clean -Xdf",
+    "lint": "eslint ."
   },
   "workspaces": [
-    "src/*"
-  ],
-  "devDependencies": {
-    "eslint": "^4.7.2",
-    "eslint-plugin-import": "^2.7.0",
-    "eslint-plugin-react": "^7.4.0"
-  }
+    "packages/*"
+  ]
 }

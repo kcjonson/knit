@@ -4,11 +4,13 @@ import {renderToString} from 'inferno-server';
 import createElement from 'inferno-create-element';
 import fs from 'fs';
 import template from 'lodash.template';
-import StoreManager from '../../../client/core/storeManager';
+import StoreManager from '@knit/client/core/storeManager';
 
 // Load base of client application
-import ClientIndex from '../../../client/Index';
-const pageTemplate = fs.readFileSync('./dist/client/index.html', 'utf8');
+import ClientIndex from '@knit/client/Index';
+
+
+const pageTemplate = fs.readFileSync('@knit/client/index.html', 'utf8');
 
 
 function applyTemplate(data) {
