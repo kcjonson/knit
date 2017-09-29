@@ -2,7 +2,7 @@
   "name": "@knit/server-api",
   "version": "1.0.0",
   "description": "",
-  "main": "dist/server/app.js",
+  "main": "dist/app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\"",
     "build": "gulp build",
@@ -31,16 +31,17 @@
     "babel-plugin-transform-object-rest-spread": "^6.26.0",
     "babel-preset-env": "^1.6.0",
     "babel-preset-react": "^6.24.1",
+    "concurrently": "^3.5.0",
+    "eslint": "^4.7.2",
+    "eslint-plugin-import": "^2.7.0",
+    "eslint-plugin-react": "^7.4.0",
     "gulp": "^3.9.1",
     "gulp-babel": "^7.0.0",
     "gulp-changed": "^3.1.0",
     "gulp-concat": "^2.6.1",
     "gulp-sourcemaps": "^2.6.1",
     "gulp-template": "^4.0.0",
-    "nodemon": "^1.12.0",
-    "eslint": "^4.7.2",
-    "eslint-plugin-import": "^2.7.0",
-    "eslint-plugin-react": "^7.4.0"
+    "nodemon": "^1.12.0"
   },
   "dependencies": {
     "isomorphic-fetch": "^2.2.1",
@@ -48,6 +49,7 @@
     "koa-bodyparser": "^4.2.0",
     "koa-router": "^7.2.1",
     "koa-static": "^4.0.1",
+    "koa2-cors": "^2.0.3",
     "lodash.template": "^4.4.0",
     "mysql2": "^1.4.2",
     "pretty-hrtime": "^1.0.3",

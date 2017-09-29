@@ -4,10 +4,12 @@ import Koa from 'koa';
 import bodyParser from 'koa-bodyparser';
 import prettyHrtime from 'pretty-hrtime';
 import router from './Router';
+import cors from 'koa2-cors';
 
 // Koa app creation;
 const app = new Koa();
 app.use(bodyParser());
+app.use(cors())
 
 //x-response-time
 app.use(async (ctx, next) => {
