@@ -4,13 +4,21 @@ require('isomorphic-fetch');  // eslint-disable-line
 import Koa from 'koa';
 import bodyParser from 'koa-bodyparser';
 import serve from 'koa-static';
+import {renderToString} from 'inferno-server';
+import {RouterContext, match} from 'inferno-router';
+import createElement from 'inferno-create-element';
 import prettyHrtime from 'pretty-hrtime';
-import router from './Router';
 import resolve from 'resolve';
+import fs from 'fs';
+import template from 'lodash.template';
+import routes from '@knit/client/routes';
 
 // Koa app creation;
 const app = new Koa();
 app.use(bodyParser());
+
+
+
 
 //x-response-time
 app.use(async (ctx, next) => {
@@ -19,6 +27,8 @@ app.use(async (ctx, next) => {
   const ms = Date.now() - start;
   ctx.set('X-Response-Time', `${ms}ms`);
 });
+
+
 
 
 //logger
@@ -31,9 +41,38 @@ app.use(async (ctx, next) => {
 });
 
 
+
+
 // Attach router
-app.use(router.routes());
-app.use(router.allowedMethods());
+
+const pageTemplatePath = resolve.sync('@knit/client/index.html')
+const pageTemplate = fs.readFileSync(pageTemplatePath, 'utf8');
+
+app.use(async (ctx, next) => {
+
+  const renderProps = match(routes, ctx.url);
+  if (renderProps.redirect) {
+    return ctx.redirect(renderProps.redirect)
+  }
+
+  const data = {
+    foo: 'foo'
+  }
+
+  const dataString = JSON.stringify(data);
+  const dataTag = `<script type='application/json' id="initialState">${dataString}</script>`;
+  const pageContents = renderToString(createElement(RouterContext, renderProps));
+  const body = template(pageTemplate)({
+    pageContents: pageContents,
+    initialData: dataTag
+  });
+  ctx.body = body;
+  await next();
+});
+
+
+
+
 
 // Serve static
 // This is a huge hack for now. Gotta figgure this better later.
@@ -41,7 +80,7 @@ app.use(router.allowedMethods());
 // more build complecity, but instead, use them in place.
 let clientPublicDir = resolve.sync('@knit/client/public/index.html');
 clientPublicDir = clientPublicDir.replace('/index.html', '');
-app.use(serve(clientPublicDir))
+app.use(serve(clientPublicDir, {index: 'null.html'})) // let inferno handle that.
 
 app.listen(4000);
 

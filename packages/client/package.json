@@ -40,9 +40,11 @@
     "webpack-stream": "^4.0.0"
   },
   "dependencies": {
+    "history": "^4.7.2",
     "inferno": "^3.9.0",
     "inferno-component": "^3.9.0",
     "inferno-create-element": "^3.9.0",
+    "inferno-router": "^3.9.0",
     "inferno-server": "^3.9.0",
     "isomorphic-fetch": "^2.2.1",
     "prop-types": "^15.5.10"

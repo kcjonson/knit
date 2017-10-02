@@ -7,7 +7,11 @@ import template from 'gulp-template';
 
 
 
-const src = ['src/{core,routes,stores,util}/**/*.{js,jsx}', 'src/Index.jsx', 'src/app.js'];
+const src = [
+  'src/{core,routes,stores,util,components}/**/*.{js,jsx}',
+  'src/Index.jsx',
+  'src/app.js'
+];
 const entry = 'src/app.js';
 const staticFiles = ['src/index.html'];
 const destBundle = './public';
@@ -32,7 +36,7 @@ gulp.task('build-bundle', ['build-static'], () => {
 gulp.task('build-static', () => {
   return gulp.src(staticFiles)
     .pipe(changed(destBundle))
-    .pipe(template({initialData: ''})) // Static page will have no initial data
+    .pipe(template({initialData: '', pageContents: ''})) // Static page will have no initial data
     .pipe(gulp.dest(destBundle));
 });
 

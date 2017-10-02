@@ -140,7 +140,7 @@
     "keyword-spacing": 1, // require a space after certain keywords (off by default)
     "space-before-blocks": [1, "always"], // require or disallow space before blocks (off by default)
     "space-before-function-paren": [1, {"anonymous": "never", "named": "never"}], // require or disallow space before function opening parenthesis (off by default)
-    "object-curly-spacing": 1,
+    "object-curly-spacing": [2, "never"],
     "array-bracket-spacing": 1,
     "computed-property-spacing": 1,
     "space-in-parens": [1, "never"], // require or disallow spaces inside parentheses (off by default)
@@ -181,23 +181,23 @@
     "inferno/jsx-boolean-value": 2, // Enforce boolean attributes notation in JSX (fixable)
     "inferno/jsx-closing-bracket-location": 0, // Validate closing bracket location in JSX (fixable)
     "inferno/jsx-curly-spacing": 2, // Enforce or disallow spaces inside of curly braces in JSX attributes (fixable)
-    "inferno/jsx-closing-tag-location": 2, // Validate closing tag location in JSX (fixable)
+    "inferno/jsx-closing-tag-location": 0, // Validate closing tag location in JSX (fixable)
     "inferno/jsx-equals-spacing": 2, // Enforce or disallow spaces around equal signs in JSX attributes (fixable)
     "inferno/jsx-filename-extension": 2, // Restrict file extensions that may contain JSX
     "inferno/jsx-first-prop-new-line": [2, "never"], // Enforce position of the first prop in JSX (fixable)
     "inferno/jsx-handler-names": 2, // Enforce event handler naming conventions in JSX
-    "inferno/jsx-indent": 2, // Validate JSX indentation (fixable)
+    "inferno/jsx-indent": 0, // Validate JSX indentation (fixable)
     "inferno/jsx-indent-props": 2, // Validate props indentation in JSX (fixable)
     "inferno/jsx-key": 2, // Validate JSX has key prop when in array or iterator
     "inferno/jsx-no-bind": 2, // Prevent usage of .bind() and arrow functions in JSX props
-    "inferno/jsx-max-props-per-line": 2, // Limit maximum of props on a single line in JSX (fixable)
+    "inferno/jsx-max-props-per-line": [2, {maximum: 2}], // Limit maximum of props on a single line in JSX (fixable)
     "inferno/jsx-no-comment-textnodes": 2, // Prevent comments from being inserted as text nodes
     "inferno/jsx-no-duplicate-props": 2, // Prevent duplicate props in JSX
-    "inferno/jsx-no-literals": 2, // Prevent usage of unwrapped JSX strings
+    "inferno/jsx-no-literals": 0, // Prevent usage of unwrapped JSX strings
     "inferno/jsx-no-target-blank": 2, // Prevent usage of unsafe target='_blank'
     "inferno/jsx-no-undef": 2, // Disallow undeclared variables in JSX
     "inferno/jsx-pascal-case": 2, // Enforce PascalCase for user-defined JSX components
-    "inferno/jsx-sort-props": 2, // Enforce props alphabetical sorting
+    "inferno/jsx-sort-props": 0, // Enforce props alphabetical sorting
     "inferno/jsx-space-before-closing": 2, // Validate spacing before closing bracket in JSX (fixable)
     "inferno/jsx-tag-spacing": 2, // Validate whitespace in and around the JSX opening and closing brackets (fixable)
     "inferno/jsx-uses-inferno": 2, // Prevent Inferno to be incorrectly marked as unused

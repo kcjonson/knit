@@ -4,6 +4,7 @@
 /routes
 /stores
 /util
+/components
 /app.js
 *.map
 /index.html

@@ -1,6 +1,6 @@
 /*eslint-disable */
 module.exports = {
-    entry: './src/app.js',
+    entry: './src/app.jsx',
     output: {
         path: __dirname,
         filename: './scripts/bundle.js'
