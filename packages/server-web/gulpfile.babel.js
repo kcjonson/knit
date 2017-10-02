@@ -2,13 +2,9 @@ import gulp from 'gulp';
 import sourcemaps from 'gulp-sourcemaps';
 import babel from 'gulp-babel';
 import changed from 'gulp-changed';
-import template from 'gulp-template';
-
 
 const serverSrc = ['src/**/*'];
-const serverDest = `dist`;
-
-
+const serverDest = 'dist';
 
 
 gulp.task('build', ['build-server'])

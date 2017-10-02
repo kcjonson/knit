@@ -4,7 +4,7 @@
   "description": "",
   "main": "dist/server/app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\"",
+    "test": "eslint .",
     "build": "gulp build",
     "watch": "gulp watch",
     "start": "node dist/app.js",

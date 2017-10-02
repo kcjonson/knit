@@ -1,4 +1,4 @@
-let manager;
+//let manager;
 
 
 // Provision with primary key
@@ -21,7 +21,7 @@ let manager;
 // the plan at least.
 
 
-function isBrowser() {
+const isBrowser = () => {
   return typeof window !== 'undefined';
 }
 
@@ -31,19 +31,32 @@ let __cache = {};
 
 let sessionId;
 
-if (isBrowser()) {
-  startSession('browser');
-}
 
 // If on server, this must be called
-export function startSession(id) {
+export const startSession = (id) => {
   console.log('storeManager.startSession', id)
   sessionId = id;
   __cache[sessionId] = {};
   __stores[sessionId] = {};
 }
 
-export async function get(storeName, props = {}) {
+if (isBrowser()) {
+  startSession('browser');
+}
+
+const updateCache = (storeName, key, data) => {
+  if (__cache[sessionId][storeName]) {
+    __cache[sessionId][storeName][key] = data;
+  } else {
+    __cache[sessionId][storeName] = {
+      [key]: data
+    }
+  }
+  console.log('storeManager.updateCache', __cache)
+}
+
+
+export const get = async (storeName, props = {}) => {
   console.log('StoreManager.get()', storeName)
 
   // TODO: Fetch from server if invalidation strategy met
@@ -102,23 +115,8 @@ throw new Error('Data from colleciton endpoint not iteratable');
   return data;
 }
 
-function updateCache(storeName, key, data) {
-  if (__cache[sessionId][storeName]) {
-    __cache[sessionId][storeName][key] = data;
-  } else {
-    __cache[sessionId][storeName] = {
-      [key]: data
-    }
-  }
-  console.log('storeManager.updateCache', __cache)
-}
-
-export async function set() {
-
-}
 
 export default {
   get: get,
-  set: set,
   startSession: startSession
 }

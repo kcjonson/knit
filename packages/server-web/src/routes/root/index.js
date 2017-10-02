@@ -1,5 +1,4 @@
 import Router from 'koa-router';
-import Inferno from 'inferno';
 import {renderToString} from 'inferno-server';
 import createElement from 'inferno-create-element';
 import fs from 'fs';
@@ -13,7 +12,7 @@ import ClientIndex from '@knit/client/Index';
 const pageTemplatePath = resolve.sync('@knit/client/index.html')
 const pageTemplate = fs.readFileSync(pageTemplatePath, 'utf8');
 
-function applyTemplate(data) {
+const applyTemplate = (data) => {
   const dataString = JSON.stringify(data);
   const dataTag = `<script type='application/json' id="initialState">${dataString}</script>`;
   const pageContents = renderToString(createElement(ClientIndex, data));
@@ -24,12 +23,12 @@ function applyTemplate(data) {
 }
 
 // debug code for testing delays.
-const timeout = ms => new Promise(res => setTimeout(res, ms))
+//const timeout = ms => new Promise(res => setTimeout(res, ms))
 
 
 
 // Get seed data, like URL params and such
-async function getData() {
+const getData = async () => {
   //await timeout(5000);
   return {
     foo: 'foo',
@@ -42,7 +41,7 @@ async function getData() {
 
 const router = new Router();
 
-router.get('/', async(ctx) => {
+router.get('/', async (ctx) => {
 
   // TODO: Hold send until promises are resolved
 

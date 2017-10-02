@@ -6,7 +6,7 @@ export default class Store extends EventEmitter {
 
 
 
-  constructor(props) {
+  constructor() {
     super();
     console.log('Store.constrcutor()');
 

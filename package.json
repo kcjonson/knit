@@ -12,5 +12,9 @@
   },
   "workspaces": [
     "packages/*"
-  ]
+  ],
+  "devDependencies": {
+    "eslint": "^4.8.0",
+    "eslint-plugin-inferno": "^7.0.1"
+  }
 }

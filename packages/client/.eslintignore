@@ -1,2 +1,10 @@
 /node_modules
-/dist
+/core
+/public
+/routes
+/stores
+/util
+/app.js
+*.map
+/index.html
+/index.js

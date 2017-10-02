@@ -10,8 +10,8 @@ import template from 'gulp-template';
 const src = ['src/{core,routes,stores,util}/**/*.{js,jsx}', 'src/Index.jsx', 'src/app.js'];
 const entry = 'src/app.js';
 const staticFiles = ['src/index.html'];
-const destBundle = `./public`;
-const destServer = `./`;
+const destBundle = './public';
+const destServer = './';
 
 gulp.task('build', ['build-bundle', 'build-unbundled'])
 
