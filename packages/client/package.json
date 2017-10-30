@@ -5,6 +5,7 @@
   "scripts": {
     "test": "npm run lint",
     "build": "gulp build",
+    "watch": "gulp watch",
     "lint": "eslint ."
   },
   "repository": {

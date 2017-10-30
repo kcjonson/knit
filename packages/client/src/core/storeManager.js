@@ -45,50 +45,58 @@ if (isBrowser()) {
 }
 
 const updateCache = (storeName, key, data) => {
-  if (__cache[sessionId][storeName]) {
-    __cache[sessionId][storeName][key] = data;
-  } else {
-    __cache[sessionId][storeName] = {
-      [key]: data
+  if (!sessionId || !__cache[sessionId]) {
+    throw new Error('session ID is undefined, unable to update cache')
+  }
+
+  if (key) {
+    if (__cache[sessionId][storeName]) {
+      __cache[sessionId][storeName][key] = data;
+    } else {
+      __cache[sessionId][storeName] = {
+        [key]: data
+      }
     }
+  } else {
+    __cache[sessionId][storeName] = data;
   }
   console.log('storeManager.updateCache', __cache)
 }
 
 
 export const get = async (storeName, props = {}) => {
-  console.log('StoreManager.get()', storeName)
+  console.log('StoreManager.get()', storeName, sessionId, props.key)
 
   // TODO: Fetch from server if invalidation strategy met
   // TODO: define invalidation strategy
   // TODO: think about invalidation
   // TODO: invalidate thoughts about invalidation, and revalidate them
 
+  console.log('cache', __cache)
 
   let data;
 
-  if (!props.collection &&
-      __cache[sessionId] &&
-      __cache[sessionId][storeName] &&
-      __cache[sessionId][storeName][props.key]) {
-    console.log('storeManager fetch', __cache[sessionId][storeName][props.key])
-    return __cache[sessionId][storeName][props.key];
+  if (__cache[sessionId] &&
+      __cache[sessionId][storeName]) {
+    if (!props.collection && __cache[sessionId][storeName][props.key]) {
+      console.log('storeManager fetch', __cache[sessionId][storeName][props.key])
+      return __cache[sessionId][storeName][props.key];
+    } else if (props.collection) {
+      console.log('storeManager fetch', __cache[sessionId][storeName])
+      return __cache[sessionId][storeName];
+    }
   }
-
-
-
 
 
   let url = 'http://' + props.url;
   if (props.collection === false) {
     if (!props.key) {
-throw new Error('No key value found!')
-}
+      throw new Error('No key value found!')
+    }
     url = url + `/${props.key}`;
   }
   let res = await fetch(url);
   data = await res.json();
-
 
 
   if (!props.collection) {
@@ -101,16 +109,21 @@ throw new Error('No key value found!')
     // }
   } else {
     if (!data.forEach) {
-throw new Error('Data from colleciton endpoint not iteratable');
-}
+      throw new Error('Data from colleciton endpoint not iteratable');
+    }
+
     // Take data from the collection response and add it to the cache as if
     // it were loaded by a non collection store itself.
+    let collectionKeys = [];
     data.forEach(item => {
       const collectionSubStoreName = props.collection.prototype.constructor.name;
-      updateCache(collectionSubStoreName, item[props.collection.key], item)
+      const key = props.collection.key;
+      collectionKeys.push(item[key]);
+      updateCache(collectionSubStoreName, item[key], item)
     });
-  }
 
+    updateCache(storeName, null, collectionKeys);
+  }
 
   return data;
 }

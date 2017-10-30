@@ -6,9 +6,6 @@ import createBrowserHistory from 'history/createBrowserHistory';
 const browserHistory = createBrowserHistory();
 
 
-// hello
-
-
 // Snag the initial state that was passed from the server side
 let initialState;
 const initialStateNode = document.getElementById('initialState')

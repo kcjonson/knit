@@ -12,6 +12,10 @@ import resolve from 'resolve';
 import fs from 'fs';
 import template from 'lodash.template';
 import routes from '@knit/client/routes';
+import storeManager from '@knit/client/core/storeManager';
+
+import DevicesStore from '@knit/client/stores/Devices';
+
 
 // Koa app creation;
 const app = new Koa();
@@ -29,8 +33,6 @@ app.use(async (ctx, next) => {
 });
 
 
-
-
 //logger
 app.use(async (ctx, next) => {
   console.log(`${ctx.method} ${ctx.url} - recieved`);
@@ -42,6 +44,14 @@ app.use(async (ctx, next) => {
 
 
 
+// Serve static
+// This is a huge hack for now. Gotta figgure this better later.
+// The goal is to not have to copy files from the client package, since thats
+// more build complecity, but instead, use them in place.
+let clientPublicDir = resolve.sync('@knit/client/public/index.html');
+clientPublicDir = clientPublicDir.replace('/index.html', '');
+app.use(serve(clientPublicDir, {index: 'null.html'})) // let inferno handle that.
+
 
 // Attach router
 
@@ -49,15 +59,21 @@ const pageTemplatePath = resolve.sync('@knit/client/index.html')
 const pageTemplate = fs.readFileSync(pageTemplatePath, 'utf8');
 
 app.use(async (ctx, next) => {
-
   const renderProps = match(routes, ctx.url);
   if (renderProps.redirect) {
     return ctx.redirect(renderProps.redirect)
   }
 
+  //storeManager.startSession('123456')
+
+  //const DevicesStoreInstance = new DevicesStore();
+  //let devicesStoreData = await DevicesStoreInstance.provision();
+
   const data = {
     foo: 'foo'
   }
+
+  //console.log('dsd', devicesStoreData)
 
   const dataString = JSON.stringify(data);
   const dataTag = `<script type='application/json' id="initialState">${dataString}</script>`;
@@ -74,13 +90,7 @@ app.use(async (ctx, next) => {
 
 
 
-// Serve static
-// This is a huge hack for now. Gotta figgure this better later.
-// The goal is to not have to copy files from the client package, since thats
-// more build complecity, but instead, use them in place.
-let clientPublicDir = resolve.sync('@knit/client/public/index.html');
-clientPublicDir = clientPublicDir.replace('/index.html', '');
-app.use(serve(clientPublicDir, {index: 'null.html'})) // let inferno handle that.
+
 
 app.listen(4000);
 

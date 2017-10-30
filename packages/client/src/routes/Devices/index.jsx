@@ -42,19 +42,12 @@ const Devices = bind(props => {
     return <Device key={deviceData.id} {...deviceData} />
   })
 
-  return <div className='Devices'>Hello from index {deviceComponents}</div>
+  return <div className='Devices'>Hello from Devices {deviceComponents}</div>
 }, DevicesStore);
 
-
-const Index = (props = {}) => {
-  console.log('Index.render()', props);
-  return <div className='Index'>
-    <Devices homeId={props.id} />
-  </div>
-}
 
 // Index.propTypes = {
 //   devices: PropTypes.array
 // }
 
-export default Index;
+export default Devices;

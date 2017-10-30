@@ -6,17 +6,19 @@ export default class Store extends EventEmitter {
 
 
 
-  constructor() {
+  constructor(props= {}) {
     super();
-    console.log('Store.constrcutor()');
+    console.log('Store.constrcutor()', props);
 
+    // Dont access __state directly or I'll cut off your hands. Use the getter/setter. -KCJ
 
-    // TODO: Think more about if stores can lazily register on get/set or if
-    //       they should be registered up front. For now, lets do lazy. -KCJ
-    // manager.register(this.constructor.name);
-
-    // Dont access this directly or I'll cut off your hands. Use the getter/setter. -KCJ
-    this.__state = {};
+    if (this.collection) {
+      this.__state = {};
+    } else {
+      this.__state = {
+        [this.key]: props[this.key]
+      }
+    }
   }
 
   url = null; // The base url to call
@@ -61,6 +63,7 @@ export default class Store extends EventEmitter {
       } else {
         this.state = {[this.constructor.name]: state}
       }
+      return this.state;
     });
   }
 

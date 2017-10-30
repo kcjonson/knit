@@ -9,13 +9,11 @@ const src = ['src/**/*'];
 const dest = `dist`;
 
 
-gulp.task('build', ['build-server'])
-
 
 // Server Code
 
 // Build the assets to run the server
-gulp.task('build-server', () => {
+gulp.task('build', () => {
   return gulp.src(src)
     .pipe(changed(dest))
     .pipe(sourcemaps.init())
@@ -27,5 +25,5 @@ gulp.task('build-server', () => {
 // Watch
 
 gulp.task('watch', () => {
-   return gulp.watch([src], ['build-server'])
+   return gulp.watch([src], ['build'])
 })

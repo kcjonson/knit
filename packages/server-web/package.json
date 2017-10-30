@@ -2,13 +2,12 @@
   "name": "@knit/server-web",
   "version": "1.0.0",
   "description": "",
-  "main": "dist/server/app.js",
+  "main": "dist/app.js",
   "scripts": {
     "test": "eslint .",
     "build": "gulp build",
     "watch": "gulp watch",
-    "start": "node dist/app.js",
-    "dev": "npm run build && concurrently --kill-others \"nodemon\" \"npm run watch\"",
+    "start": "nodemon",
     "clean": "git clean -Xdf -e '!node_modules'",
     "nuke": "git clean -Xdf"
   },

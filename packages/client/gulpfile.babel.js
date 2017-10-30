@@ -18,7 +18,9 @@ const destBundle = './public';
 const destServer = './';
 
 gulp.task('build', ['build-bundle', 'build-unbundled'])
-
+gulp.task('watch', () => {
+  return gulp.watch(src, ['build'])
+})
 
 // Standalone site build
 

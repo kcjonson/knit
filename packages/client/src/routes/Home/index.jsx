@@ -4,7 +4,7 @@ import Inferno from 'inferno';
 
 const Home = (props = {}) => {
   console.log('Home.render()', props);
-  return <div className='Home'>Welcome to Home</div>
+  return <div className='Home'>Welcome to Hell</div>
 }
 
 // Index.propTypes = {
